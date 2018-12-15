@@ -42,6 +42,7 @@ const program = require('commander');
 
 const awaitTaskCompletion = async (taskId) => {
   const task = await client.tasks.get({ taskId });
+  console.log(task);
   if (task.completed) {
     return task;
   }
@@ -50,7 +51,10 @@ const awaitTaskCompletion = async (taskId) => {
 };
 
 const reindex = async (oldName, newName, alias = 'artshell_main') =>  {
+  console.log('creating index', newName);
   await createIndex(newName);
+  console.log('done');
+  console.log(`Reindexing ${oldName} to ${newName}`);
   const task = await client.reindex({
     waitForCompletion: false,
     body: {
@@ -62,7 +66,10 @@ const reindex = async (oldName, newName, alias = 'artshell_main') =>  {
       },
     },
   });
+  console.log('Awaiting task completion..');
   await awaitTaskCompletion(task.task);
+  console.log('done');
+  console.log('Setting up alias to point to ', newName);
   await client.indices.updateAliases({
     body: {
       actions: [
@@ -71,6 +78,7 @@ const reindex = async (oldName, newName, alias = 'artshell_main') =>  {
       ],
     },
   });
+  console.log('all done');
 };
 
 program
