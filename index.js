@@ -1,10 +1,10 @@
 require('dotenv').config();
 const Promise = require('bluebird');
-const client = require('../../server/modules/index/client');
+const client = require('./client');
 const fs = require('fs');
 
 const mappings = JSON.parse(fs.readFileSync(process.env.MAPPING_PATH).toString());
-const mappings = JSON.parse(fs.readFileSync(process.env.SETTINGS_PATH).toString());
+const settings = JSON.parse(fs.readFileSync(process.env.SETTINGS_PATH).toString());
 
 const logError = ({ message }) => console.log(message);
 
