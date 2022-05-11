@@ -1,9 +1,12 @@
 {
   "name": "mr_reindex",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "Elasticsearch maintenance tool",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "commit": "cz",
+    "release": "standard-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
@@ -12,11 +15,28 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.377.0",
-    "bluebird": "^3.5.3",
-    "commander": "^2.19.0",
-    "dotenv": "^6.2.0",
-    "elasticsearch": "^15.2.0",
-    "http-aws-es": "^6.0.0"
+    "@opensearch-project/opensearch": "^1.1.0",
+    "aws-opensearch-connector": "^1.0.0",
+    "aws-sdk": "^2.1130.0",
+    "bluebird": "^3.7.2",
+    "chalk": "^4.1.2",
+    "clui": "^0.3.6",
+    "commander": "^9.2.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "prettier": "2.6.2",
+    "standard-version": "^9.3.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
